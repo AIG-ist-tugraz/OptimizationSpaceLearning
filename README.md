@@ -15,7 +15,7 @@ We have a python framework which can produce the training data and do the CV-bas
 Go to `main.py` and set the `mode` variable to `"train"`. Then run `python3 main.py`.
 
 ### Testing
-Go to `main.py` and set the `mode` variable to `"test"`. Then run `python3 main.py`. The interesting thing is the output on `stdout`, which can be piped into a file. If GCC error messages are in the output, use `grep` in the command line to catch only lines that start with a digit.
+Go to `main.py` and set the `mode` variable to `"test"`. Then run `python3 main.py <k> <a>`, where *k* is the desired value for k-nearest neighbours and *a* is the number of top configurations to be aggregated. The interesting thing is the output on `stdout`, which can be piped into a file. If GCC error messages are in the output, use `grep` in the command line to catch only lines that start with a digit.
 
 ### Miscellaneous
 The files `feature_importance.py` and `feature_norm.py` were used to compute feature importance and to normalize the features of the program metrics data. They can be run using `python3 <filename>` with the corresponding file name instead of the placeholder.
@@ -28,4 +28,4 @@ The `results/` directory contains the training results. The files named `train_*
 ## Evaluation results
 The `eval/` directory contains the results of our evaluation, including all required data.
 
-Run `python3 analysis.py` to use our analysis script and receive an overview of the performance of OSL.
+Run `python3 analysis.py <dir> <k> <a> [-v] [-c]` to use our analysis script and receive an overview of the performance of OSL. The analysis script takes the following mandatory arguments: `dir` is the directory containing the result files to be analyzed (check the contents of the `eval/` directory, they can be found there), `k` is the number of neighbours used for k-NN and `a` is the number of top configurations to be aggregated; *k* and *a* are only available if the corresponding files exist in the directory specified before, as they have to be set beforehand. There are also non-mandatory arguments: `-v` stands for verbose and increases the level of output given, and `-c` stands for chosen ones and outputs only the programs that are in the list used for the comparison with other approaches in the paper.
